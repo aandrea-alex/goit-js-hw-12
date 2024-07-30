@@ -1,18 +1,17 @@
+
+import axios from 'axios';
+
 const API_URL = 'https://pixabay.com/api/';
 const API_KEY = '45097431-2d8d6a9f4785bbcc4049d8cdd';
 
-const fetchData = url =>
-  new Promise((resolve, reject) =>
-    fetch(url)
-      .then(response => {
-        if (!response.ok) {
-          reject(new Error(`HTTP error, status: ${response.status}`));
-        }
-        return response.json();
-      })
-      .then(json => resolve(json))
-      .catch(error => reject(error))
-  );
+async function axiosData(url) {
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    throw new Error(`Failed to fetch data: ${error.message}`);
+  }
+}
 
 function getImages(strForSearch) {
   const apiParams = {
@@ -22,12 +21,12 @@ function getImages(strForSearch) {
     orientation: 'horizontal',
     safesearch: true,
     page: 1,
-    per_page: 20,
+    per_page: 15,
   };
 
   const url = `${API_URL}?${new URLSearchParams(apiParams).toString()}`;
   return new Promise((resolve, reject) => {
-    fetchData(url)
+    axiosData(url)
       .then(data => {
         if (!data.hits.length) {
           reject(
