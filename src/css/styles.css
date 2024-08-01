@@ -8,6 +8,7 @@
 @import url('./layout/loader.css');
 @import url('./layout/search-images-form.css');
 @import url('./layout/gallery-cards.css');
+@import url('./layout/gallery-pagination.css');
 @import url('./layout/simple-lightbox-window.css');
 
 :root {

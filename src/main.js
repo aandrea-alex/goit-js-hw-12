@@ -11,8 +11,13 @@ import createCadsGallery from './js/render-functions.js';
 const galleryRef = document.querySelector('.gallery');
 const loaderRef = document.querySelector('.loader');
 const searchForm = document.querySelector('.search-form');
+const moreBtn = document.getElementById('morePageBtn');
+
+moreBtn.addEventListener('click', onMoreBtnClick);
 
 searchForm.addEventListener('submit', onSearchFormSubmit);
+
+let currentPage = 1;
 
 let slBox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
@@ -42,7 +47,7 @@ function onSearchFormSubmit(event) {
   event.preventDefault();
   loaderRef.style.display = 'block';
   const searchStr = event.currentTarget.search.value.trim();
-  getImages(searchStr)
+  getImages(searchStr, currentPage)
     .then(data => refreshOnSuccess(data))
     .catch(msg => refreshOnError(msg));
 }
@@ -78,3 +83,23 @@ function createErrMsg(msg) {
     iconColor: '#fafafb',
   });
 }
+
+function onMoreBtnClick() {
+  currentPage += 1;
+  // this.#loader.style.display = 'block';
+  // this.#moreBtn.style.visible = 'none';
+  // this.#fnGetImages(this.#searchStr, nextPage)
+  //   .then(images => {
+  //     this.addData(images.hits, this.#maxPages, this.#searchStr);
+  //   })
+  //   .catch(error => {
+  //     createErrMsg(error);
+  //     this.#moreBtn.style.display = 'none';
+  //   })
+  //   .finally(() => {
+  //     this.#loader.style.display = 'none';
+  //     this.#boxRef && this.#boxRef.refresh();
+  //     this.#moreBtn.style.visible = 'flex';
+  //   });
+}
+

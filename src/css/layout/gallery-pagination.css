@@ -1,0 +1,72 @@
+@media screen and (max-width: 374px) {
+  .pagination-button {
+    padding: 8px 8px;
+    gap: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.pagination-section {
+  padding-top: 25px;
+  padding-bottom: 50px;
+  position: relative;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pagination-button {
+  margin-left: auto;
+  margin-top: 20px;
+  margin-right: auto;
+  margin-bottom: 20px;
+  display: none;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary-color);
+  padding: 8px 8px;
+  border-radius: 15px;
+  border: 1px solid var(--accent-color);
+  background-color: transparent;
+  fill: var(--accent-color);
+  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.pagination-button:hover,
+.pagination-button:focus {
+  background-color: var(--accent-color);
+  color: var(--button-color);
+  fill: var(--button-color);
+}
+
+.pagination-button-icon-more {
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.pagination-button:disabled {
+  cursor: not-allowed;
+  border: 1px solid var(--button-color);
+  color: var(--button-color);
+  background-color: rgba(252, 249, 249, 0.1);
+  fill: var(--button-color);
+}
+
+.pagination-button:disabled:hover {
+  cursor: not-allowed;
+  border: 1px solid rgba(252, 249, 249, 0.1);
+  color: var(--button-color);
+  background-color: rgba(252, 249, 249, 0.1);
+}
+
+@media screen and (min-width: 1280px) {
+  .pagination-button {
+    display: flex;
+    padding: 8px 8px;
+  }
+}

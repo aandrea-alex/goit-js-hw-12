@@ -13,14 +13,14 @@ async function axiosData(url) {
   }
 }
 
-function getImages(strForSearch) {
+function getImages(strForSearch,  pageNumber = 1) {
   const apiParams = {
     key: API_KEY,
     q: encodeURIComponent(strForSearch),
     image_type: 'photo',
     orientation: 'horizontal',
     safesearch: true,
-    page: 1,
+    page: pageNumber,
     per_page: 15,
   };
 
