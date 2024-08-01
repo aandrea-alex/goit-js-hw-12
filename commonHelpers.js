@@ -1,9 +1,9 @@
-import{a as h,S as p,i as g}from"./assets/vendor-c493984e.js";(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))a(e);new MutationObserver(e=>{for(const r of e)if(r.type==="childList")for(const n of r.addedNodes)n.tagName==="LINK"&&n.rel==="modulepreload"&&a(n)}).observe(document,{childList:!0,subtree:!0});function o(e){const r={};return e.integrity&&(r.integrity=e.integrity),e.referrerPolicy&&(r.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?r.credentials="include":e.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function a(e){if(e.ep)return;e.ep=!0;const r=o(e);fetch(e.href,r)}})();const m="/goit-js-hw-12/assets/bi-x-octagon-73f29380.svg";const i="/goit-js-hw-12/assets/icons-02140929.svg",v="https://pixabay.com/api/",y="45097431-2d8d6a9f4785bbcc4049d8cdd";async function b(s){try{return(await h.get(s)).data}catch(t){throw new Error(`Failed to fetch data: ${t.message}`)}}function w(s){const t={key:y,q:encodeURIComponent(s),image_type:"photo",orientation:"horizontal",safesearch:!0,page:1,per_page:15},o=`${v}?${new URLSearchParams(t).toString()}`;return new Promise((a,e)=>{b(o).then(r=>{r.hits.length||e("Sorry, there are no images matching your search query. Please, try again!"),a(r.hits)}).catch(r=>{e(`Error fetching images: ${r.message}`)})})}const L=s=>{const{largeImageURL:t,previewURL:o,tags:a,likes:e,views:r,comments:n,downloads:f}=s;return`<li class='card'> 
+import{a as p,S as g,i as m}from"./assets/vendor-c493984e.js";(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const s of document.querySelectorAll('link[rel="modulepreload"]'))n(s);new MutationObserver(s=>{for(const r of s)if(r.type==="childList")for(const a of r.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&n(a)}).observe(document,{childList:!0,subtree:!0});function o(s){const r={};return s.integrity&&(r.integrity=s.integrity),s.referrerPolicy&&(r.referrerPolicy=s.referrerPolicy),s.crossOrigin==="use-credentials"?r.credentials="include":s.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function n(s){if(s.ep)return;s.ep=!0;const r=o(s);fetch(s.href,r)}})();const v="/goit-js-hw-12/assets/bi-x-octagon-73f29380.svg";const i="/goit-js-hw-12/assets/icons-ddd773f8.svg",y="https://pixabay.com/api/",b="45097431-2d8d6a9f4785bbcc4049d8cdd";async function w(e){try{return(await p.get(e)).data}catch(t){throw new Error(`Failed to fetch data: ${t.message}`)}}function L(e,t=1){const o={key:b,q:encodeURIComponent(e),image_type:"photo",orientation:"horizontal",safesearch:!0,page:t,per_page:15},n=`${y}?${new URLSearchParams(o).toString()}`;return new Promise((s,r)=>{w(n).then(a=>{a.hits.length||r("Sorry, there are no images matching your search query. Please, try again!"),s(a.hits)}).catch(a=>{r(`Error fetching images: ${a.message}`)})})}const S=e=>{const{largeImageURL:t,previewURL:o,tags:n,likes:s,views:r,comments:a,downloads:h}=e;return`<li class='card'> 
               <a class='card-link' href='${t}'>                    
                 <div class='card-cover-inner'>                
                     <img class='card-cover'
                         src='${o}'
-                        alt='${a}'                                                          
+                        alt='${n}'                                                          
                     />                                                  
                   <div class='card-cover-darkened'></div>
                 </div>
@@ -11,7 +11,7 @@ import{a as h,S as p,i as g}from"./assets/vendor-c493984e.js";(function(){const 
               <div class="card-info">
                   <div class="field">
                       <span class="label">Likes</span>
-                      <span class="value">${e}</span>    
+                      <span class="value">${s}</span>    
                   </div>
                   <div class="field">
                       <span class="label">Views</span>
@@ -19,19 +19,19 @@ import{a as h,S as p,i as g}from"./assets/vendor-c493984e.js";(function(){const 
                   </div>
                   <div class="field">
                       <span class="label">Comments</span>
-                      <span class="value">${n}</span>    
+                      <span class="value">${a}</span>    
                   </div>
                   <div class="field">
                       <span class="label">Downloads</span>
-                      <span class="value">${f}</span>    
+                      <span class="value">${h}</span>    
                   </div>
               </div>
-          </li>`};function S(s){return s.map(L).join("")}function $(s,t){const o=S(s);t.innerHTML="",t.insertAdjacentHTML("beforeend",o)}const c=document.querySelector(".gallery"),l=document.querySelector(".loader"),d=document.querySelector(".search-form");d.addEventListener("submit",x);let u=new p(".gallery a",{captionsData:"alt",captionPosition:"bottom",captionDelay:250,nav:!0,navText:[`<svg class="lightbox-button-icon-prev" width="24" height="24" aria-label="icon arrow left">
+          </li>`};function $(e){return e.map(S).join("")}function x(e,t){const o=$(e);t.innerHTML="",t.insertAdjacentHTML("beforeend",o)}const c=document.querySelector(".gallery"),l=document.querySelector(".loader"),d=document.querySelector(".search-form"),P=document.getElementById("morePageBtn");P.addEventListener("click",O);d.addEventListener("submit",C);let u=1,f=new g(".gallery a",{captionsData:"alt",captionPosition:"bottom",captionDelay:250,nav:!0,navText:[`<svg class="lightbox-button-icon-prev" width="24" height="24" aria-label="icon arrow left">
           <use href="${i}#icon-chevron-left"></use>
         </svg>`,`<svg class="lightbox-button-icon-next" width="24" height="24" aria-label="icon arrow right">
           <use href="${i}#icon-chevron-right"></use>
         </svg>`],close:!0,closeText:`
         <svg class="lightbox-close-icon" width="16" height="16">
           <use href="${i}#close-form"></use>
-        </svg>`,enableKeyboard:!0,showCounter:!0,animationSlide:!0,loop:!0});function x(s){s.preventDefault(),l.style.display="block";const t=s.currentTarget.search.value.trim();w(t).then(o=>C(o)).catch(o=>P(o))}function P(s){d.search.value="",l.style.display="none",O(s),c.style.backgroundColor="#f5f5f5",c.innerHTML="",u.refresh()}function C(s){d.search.value="",l.style.display="none",c.style.backgroundColor="#ffffff",$(s,c),u.refresh()}function O(s){g.show({message:s,messageColor:"#fafafb",messageSize:"16px",backgroundColor:"#fc5a5a",position:"topRight",closeOnEscape:!0,close:!0,icon:"Icomoon",iconUrl:`${m}`,iconColor:"#fafafb"})}
+        </svg>`,enableKeyboard:!0,showCounter:!0,animationSlide:!0,loop:!0});function C(e){e.preventDefault(),l.style.display="block";const t=e.currentTarget.search.value.trim();L(t,u).then(o=>k(o)).catch(o=>E(o))}function E(e){d.search.value="",l.style.display="none",M(e),c.style.backgroundColor="#f5f5f5",c.innerHTML="",f.refresh()}function k(e){d.search.value="",l.style.display="none",c.style.backgroundColor="#ffffff",x(e,c),f.refresh()}function M(e){m.show({message:e,messageColor:"#fafafb",messageSize:"16px",backgroundColor:"#fc5a5a",position:"topRight",closeOnEscape:!0,close:!0,icon:"Icomoon",iconUrl:`${v}`,iconColor:"#fafafb"})}function O(){u+=1}
 //# sourceMappingURL=commonHelpers.js.map
