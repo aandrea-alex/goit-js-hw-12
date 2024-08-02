@@ -1,9 +1,9 @@
-import{a as p,S as g,i as m}from"./assets/vendor-c493984e.js";(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const s of document.querySelectorAll('link[rel="modulepreload"]'))n(s);new MutationObserver(s=>{for(const r of s)if(r.type==="childList")for(const a of r.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&n(a)}).observe(document,{childList:!0,subtree:!0});function o(s){const r={};return s.integrity&&(r.integrity=s.integrity),s.referrerPolicy&&(r.referrerPolicy=s.referrerPolicy),s.crossOrigin==="use-credentials"?r.credentials="include":s.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function n(s){if(s.ep)return;s.ep=!0;const r=o(s);fetch(s.href,r)}})();const v="/goit-js-hw-12/assets/bi-x-octagon-73f29380.svg";const i="/goit-js-hw-12/assets/icons-ddd773f8.svg",y="https://pixabay.com/api/",b="45097431-2d8d6a9f4785bbcc4049d8cdd";async function w(e){try{return(await p.get(e)).data}catch(t){throw new Error(`Failed to fetch data: ${t.message}`)}}function L(e,t=1){const o={key:b,q:encodeURIComponent(e),image_type:"photo",orientation:"horizontal",safesearch:!0,page:t,per_page:15},n=`${y}?${new URLSearchParams(o).toString()}`;return new Promise((s,r)=>{w(n).then(a=>{a.hits.length||r("Sorry, there are no images matching your search query. Please, try again!"),s(a.hits)}).catch(a=>{r(`Error fetching images: ${a.message}`)})})}const S=e=>{const{largeImageURL:t,previewURL:o,tags:n,likes:s,views:r,comments:a,downloads:h}=e;return`<li class='card'> 
+import{a as P,S as x}from"./assets/vendor-f80bfc2c.js";(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))o(e);new MutationObserver(e=>{for(const r of e)if(r.type==="childList")for(const c of r.addedNodes)c.tagName==="LINK"&&c.rel==="modulepreload"&&o(c)}).observe(document,{childList:!0,subtree:!0});function a(e){const r={};return e.integrity&&(r.integrity=e.integrity),e.referrerPolicy&&(r.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?r.credentials="include":e.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function o(e){if(e.ep)return;e.ep=!0;const r=a(e);fetch(e.href,r)}})();const p="/goit-js-hw-12/assets/icons-ddd773f8.svg",S="https://pixabay.com/api/",$="45097431-2d8d6a9f4785bbcc4049d8cdd";async function k(s){try{return(await P.get(s)).data}catch(t){throw new Error(`Failed to fetch data: ${t.message}`)}}async function m(s,t=1){const a={key:$,q:encodeURIComponent(s),image_type:"photo",orientation:"horizontal",safesearch:!0,page:t,per_page:15},o=`${S}?${new URLSearchParams(a).toString()}`;try{const e=await k(o);return e.hits.length?Promise.resolve(e):Promise.reject("Sorry, there are no images matching your search query. Please, try again!")}catch(e){console.error("Error:",e)}}const M=s=>{const{largeImageURL:t,previewURL:a,tags:o,likes:e,views:r,comments:c,downloads:L}=s;return`<li class='card'> 
               <a class='card-link' href='${t}'>                    
                 <div class='card-cover-inner'>                
                     <img class='card-cover'
-                        src='${o}'
-                        alt='${n}'                                                          
+                        src='${a}'
+                        alt='${o}'                                                          
                     />                                                  
                   <div class='card-cover-darkened'></div>
                 </div>
@@ -11,7 +11,7 @@ import{a as p,S as g,i as m}from"./assets/vendor-c493984e.js";(function(){const 
               <div class="card-info">
                   <div class="field">
                       <span class="label">Likes</span>
-                      <span class="value">${s}</span>    
+                      <span class="value">${e}</span>    
                   </div>
                   <div class="field">
                       <span class="label">Views</span>
@@ -19,19 +19,19 @@ import{a as p,S as g,i as m}from"./assets/vendor-c493984e.js";(function(){const 
                   </div>
                   <div class="field">
                       <span class="label">Comments</span>
-                      <span class="value">${a}</span>    
+                      <span class="value">${c}</span>    
                   </div>
                   <div class="field">
                       <span class="label">Downloads</span>
-                      <span class="value">${h}</span>    
+                      <span class="value">${L}</span>    
                   </div>
               </div>
-          </li>`};function $(e){return e.map(S).join("")}function x(e,t){const o=$(e);t.innerHTML="",t.insertAdjacentHTML("beforeend",o)}const c=document.querySelector(".gallery"),l=document.querySelector(".loader"),d=document.querySelector(".search-form"),P=document.getElementById("morePageBtn");P.addEventListener("click",O);d.addEventListener("submit",C);let u=1,f=new g(".gallery a",{captionsData:"alt",captionPosition:"bottom",captionDelay:250,nav:!0,navText:[`<svg class="lightbox-button-icon-prev" width="24" height="24" aria-label="icon arrow left">
-          <use href="${i}#icon-chevron-left"></use>
+          </li>`};function C(s){return s.map(M).join("")}function E(s,t){const a=C(s);t.innerHTML="",t.insertAdjacentHTML("beforeend",a)}const d=document.querySelector(".gallery"),i=document.querySelector(".loader"),y=document.querySelector(".search-form"),l=document.getElementById("morePageBtn");l.addEventListener("click",I);y.addEventListener("submit",O);let n=1,u=0,h="",f=[],g=new x(".gallery a",{captionsData:"alt",captionPosition:"bottom",captionDelay:250,nav:!0,navText:[`<svg class="lightbox-button-icon-prev" width="24" height="24" aria-label="icon arrow left">
+          <use href="${p}#icon-chevron-left"></use>
         </svg>`,`<svg class="lightbox-button-icon-next" width="24" height="24" aria-label="icon arrow right">
-          <use href="${i}#icon-chevron-right"></use>
+          <use href="${p}#icon-chevron-right"></use>
         </svg>`],close:!0,closeText:`
         <svg class="lightbox-close-icon" width="16" height="16">
-          <use href="${i}#close-form"></use>
-        </svg>`,enableKeyboard:!0,showCounter:!0,animationSlide:!0,loop:!0});function C(e){e.preventDefault(),l.style.display="block";const t=e.currentTarget.search.value.trim();L(t,u).then(o=>k(o)).catch(o=>E(o))}function E(e){d.search.value="",l.style.display="none",M(e),c.style.backgroundColor="#f5f5f5",c.innerHTML="",f.refresh()}function k(e){d.search.value="",l.style.display="none",c.style.backgroundColor="#ffffff",x(e,c),f.refresh()}function M(e){m.show({message:e,messageColor:"#fafafb",messageSize:"16px",backgroundColor:"#fc5a5a",position:"topRight",closeOnEscape:!0,close:!0,icon:"Icomoon",iconUrl:`${v}`,iconColor:"#fafafb"})}function O(){u+=1}
+          <use href="${p}#close-form"></use>
+        </svg>`,enableKeyboard:!0,showCounter:!0,animationSlide:!0,loop:!0});function O(s){s.preventDefault(),i.style.display="block",n=1,u=0,f=[],h=s.currentTarget.search.value.trim(),m(h,n).then(t=>b(t)).catch(t=>v()).finally(()=>{i.style.display="none",w()})}function v(s){y.search.value="",i.style.display="none",d.style.backgroundColor="#f5f5f5",d.innerHTML="",g.refresh()}function b(s){d.style.backgroundColor="#ffffff",u=Math.ceil(s.totalHits/15),f.push(...s.hits),n+=1,E(f,d),g&&g.refresh()}function I(){i.style.display="block",l.style.visible="none",m(h,n).then(s=>b(s)).catch(s=>v()).finally(()=>{i.style.display="none",l.style.visible="block",w()})}function w(){console.log("currentPage",n),console.log("maxPages",u),l.style.display=f.length>0?"block":"none",n>=u&&(l.style.display="none")}
 //# sourceMappingURL=commonHelpers.js.map
