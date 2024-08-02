@@ -13,7 +13,7 @@ async function axiosData(url) {
   }
 }
 
-function getImages(strForSearch,  pageNumber = 1) {
+async function getImages(strForSearch,  pageNumber = 1) {
   const apiParams = {
     key: API_KEY,
     q: encodeURIComponent(strForSearch),
@@ -25,20 +25,19 @@ function getImages(strForSearch,  pageNumber = 1) {
   };
 
   const url = `${API_URL}?${new URLSearchParams(apiParams).toString()}`;
-  return new Promise((resolve, reject) => {
-    axiosData(url)
-      .then(data => {
-        if (!data.hits.length) {
-          reject(
-            'Sorry, there are no images matching your search query. Please, try again!'
-          );
-        }
-        resolve(data.hits);
-      })
-      .catch(error => {
-        reject(`Error fetching images: ${error.message}`);
-      });
-  });
+  try {
+    const data = await axiosData(url);
+
+    if (!data.hits.length) {
+      return Promise.reject(
+        'Sorry, there are no images matching your search query. Please, try again!'
+      );
+    }
+    return Promise.resolve(data);
+  } catch (error) {
+    console.error('Error:', error);
+  }
 }
 
 export default getImages;
+

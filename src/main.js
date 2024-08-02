@@ -18,6 +18,9 @@ moreBtn.addEventListener('click', onMoreBtnClick);
 searchForm.addEventListener('submit', onSearchFormSubmit);
 
 let currentPage = 1;
+let maxPages = 0;
+let searchStr = '';
+let images = [];
 
 let slBox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
@@ -46,27 +49,44 @@ let slBox = new SimpleLightbox('.gallery a', {
 function onSearchFormSubmit(event) {
   event.preventDefault();
   loaderRef.style.display = 'block';
-  const searchStr = event.currentTarget.search.value.trim();
+
+  currentPage = 1;
+  maxPages = 0;
+  // searchStr = '';
+  images = [];
+
+  searchStr = event.currentTarget.search.value.trim();
+
   getImages(searchStr, currentPage)
     .then(data => refreshOnSuccess(data))
-    .catch(msg => refreshOnError(msg));
+    .catch(msg => refreshOnError(msg))
+    .finally(() => {
+      loaderRef.style.display = 'none';
+      updateMoreBtn();
+    });
 }
 
 function refreshOnError(msg) {
   searchForm.search.value = '';
   loaderRef.style.display = 'none';
-  createErrMsg(msg);
+  // createErrMsg(msg);
   galleryRef.style.backgroundColor = '#f5f5f5';
   galleryRef.innerHTML = '';
   slBox.refresh();
 }
 
 function refreshOnSuccess(data) {
-  searchForm.search.value = '';
-  loaderRef.style.display = 'none';
   galleryRef.style.backgroundColor = '#ffffff';
-  createCadsGallery(data, galleryRef);
-  slBox.refresh();
+  maxPages = Math.ceil(data.totalHits / 15);
+  // console.log("hits", data.hits);
+
+  images.push(...data.hits);
+
+  // console.log("images", images);
+  currentPage += 1;
+  createCadsGallery(images, galleryRef);
+
+  slBox && slBox.refresh();
 }
 
 function createErrMsg(msg) {
@@ -85,21 +105,27 @@ function createErrMsg(msg) {
 }
 
 function onMoreBtnClick() {
-  currentPage += 1;
-  // this.#loader.style.display = 'block';
-  // this.#moreBtn.style.visible = 'none';
-  // this.#fnGetImages(this.#searchStr, nextPage)
-  //   .then(images => {
-  //     this.addData(images.hits, this.#maxPages, this.#searchStr);
-  //   })
-  //   .catch(error => {
-  //     createErrMsg(error);
-  //     this.#moreBtn.style.display = 'none';
-  //   })
-  //   .finally(() => {
-  //     this.#loader.style.display = 'none';
-  //     this.#boxRef && this.#boxRef.refresh();
-  //     this.#moreBtn.style.visible = 'flex';
-  //   });
+  loaderRef.style.display = 'block';
+  moreBtn.style.visible = 'none';
+
+  getImages(searchStr, currentPage)
+    .then(data => refreshOnSuccess(data))
+    .catch(msg => refreshOnError(msg))
+    .finally(() => {
+      loaderRef.style.display = 'none';
+      moreBtn.style.visible = 'block';
+      updateMoreBtn();
+    });
 }
 
+function updateMoreBtn() {
+  console.log('currentPage', currentPage);
+  console.log('maxPages', maxPages);
+  moreBtn.style.display = images.length > 0 ? 'block' : 'none';
+  if (currentPage >= maxPages) {
+    moreBtn.style.display = 'none';
+  }
+  // if (maxPages > 1) {
+  //   createErrMsg("We're sorry, but you've reached the end of search results.");
+  // }
+}
