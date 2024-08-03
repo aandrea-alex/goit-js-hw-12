@@ -79,11 +79,7 @@ function refreshOnError(msg) {
 function refreshOnSuccess(data) {
   galleryRef.style.backgroundColor = '#ffffff';
   maxPages = Math.ceil(data.totalHits / 15);
-  // console.log("hits", data.hits);
-
   images.push(...data.hits);
-
-  // console.log("images", images);
   currentPage += 1;
   createCadsGallery(images, galleryRef);
 
@@ -120,8 +116,6 @@ function onMoreBtnClick() {
 }
 
 function updateMoreBtn() {
-  console.log('currentPage', currentPage);
-  console.log('maxPages', maxPages);
   moreBtn.style.display = images.length > 0 ? 'block' : 'none';
   if (currentPage >= maxPages) {
     moreBtn.style.display = 'none';
