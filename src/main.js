@@ -49,15 +49,12 @@ let slBox = new SimpleLightbox('.gallery a', {
 
 function onSearchFormSubmit(event) {
   event.preventDefault();
-  loaderRef.style.display = 'block';
-
-  currentPage = 1;
-  maxPages = 0;
-  // searchStr = '';
-  images = [];
-
   searchStr = event.currentTarget.search.value.trim();
+  if (searchStr === '') return;
 
+  reset();
+  loaderRef.style.display = 'block';
+  
   getImages(searchStr, currentPage)
     .then(data => refreshOnSuccess(data))
     .catch(msg => refreshOnError(msg))
@@ -123,4 +120,10 @@ function updateMoreBtn() {
   // if (maxPages > 1) {
   //   createErrMsg("We're sorry, but you've reached the end of search results.");
   // }
+}
+
+function reset() {
+  currentPage = 1;
+  maxPages = 0;
+  images = [];
 }
