@@ -7,6 +7,7 @@ import '../src/css/layout/simple-lightbox-window.css';
 import iconsUrl from '../src/img/icons.svg';
 import getImages from './js/pixabay-api.js';
 import createCadsGallery from './js/render-functions.js';
+import { scrollingDown } from './js/render-functions.js';
 
 const galleryRef = document.querySelector('.gallery');
 const loaderRef = document.querySelector('.loader');
@@ -67,7 +68,7 @@ function onSearchFormSubmit(event) {
 function refreshOnError(msg) {
   searchForm.search.value = '';
   loaderRef.style.display = 'none';
-  // createErrMsg(msg);
+  createErrMsg(msg);
   galleryRef.style.backgroundColor = '#f5f5f5';
   galleryRef.innerHTML = '';
   slBox.refresh();
@@ -79,8 +80,8 @@ function refreshOnSuccess(data) {
   images.push(...data.hits);
   currentPage += 1;
   createCadsGallery(images, galleryRef);
-
   slBox && slBox.refresh();
+  scrollingDown();
 }
 
 function createErrMsg(msg) {
