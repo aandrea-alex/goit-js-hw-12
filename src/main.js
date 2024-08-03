@@ -14,6 +14,7 @@ const searchForm = document.querySelector('.search-form');
 const moreBtn = document.getElementById('morePageBtn');
 
 moreBtn.addEventListener('click', onMoreBtnClick);
+moreBtn.style.display = 'none';
 
 searchForm.addEventListener('submit', onSearchFormSubmit);
 
