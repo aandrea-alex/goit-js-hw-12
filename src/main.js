@@ -54,7 +54,7 @@ function onSearchFormSubmit(event) {
 
   reset();
   loaderRef.style.display = 'block';
-  
+
   getImages(searchStr, currentPage)
     .then(data => refreshOnSuccess(data))
     .catch(msg => refreshOnError(msg))
@@ -116,10 +116,12 @@ function updateMoreBtn() {
   moreBtn.style.display = images.length > 0 ? 'block' : 'none';
   if (currentPage >= maxPages) {
     moreBtn.style.display = 'none';
+    if (maxPages > 1) {
+      createErrMsg(
+        "We're sorry, but you've reached the end of search results."
+      );
+    }
   }
-  // if (maxPages > 1) {
-  //   createErrMsg("We're sorry, but you've reached the end of search results.");
-  // }
 }
 
 function reset() {
