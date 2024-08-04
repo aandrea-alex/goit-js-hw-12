@@ -48,21 +48,20 @@ let slBox = new SimpleLightbox('.gallery a', {
   loop: true,
 });
 
-function onSearchFormSubmit(event) {
+async function onSearchFormSubmit(event) {
   event.preventDefault();
   searchStr = event.currentTarget.search.value.trim();
   if (searchStr === '') return;
-
   reset();
   loaderRef.style.display = 'block';
-
-  getImages(searchStr, currentPage)
-    .then(data => refreshOnSuccess(data))
-    .catch(msg => refreshOnError(msg))
-    .finally(() => {
-      loaderRef.style.display = 'none';
-      updateMoreBtn();
-    });
+  try {
+    const data = await getImages(searchStr, currentPage);
+    refreshOnSuccess(data);
+  } catch (error) {
+    refreshOnError(error);
+  } finally {
+    loaderRef.style.display = 'none';
+  }
 }
 
 function refreshOnError(msg) {
@@ -72,6 +71,7 @@ function refreshOnError(msg) {
   galleryRef.style.backgroundColor = '#f5f5f5';
   galleryRef.innerHTML = '';
   slBox.refresh();
+  moreBtn.style.display = 'none';
 }
 
 function refreshOnSuccess(data) {
@@ -82,6 +82,7 @@ function refreshOnSuccess(data) {
   createCadsGallery(images, galleryRef);
   slBox && slBox.refresh();
   scrollingDown();
+  updateMoreBtn();
 }
 
 function createErrMsg(msg) {
@@ -99,18 +100,17 @@ function createErrMsg(msg) {
   });
 }
 
-function onMoreBtnClick() {
+async function onMoreBtnClick() {
   loaderRef.style.display = 'block';
   moreBtn.style.visible = 'none';
-
-  getImages(searchStr, currentPage)
-    .then(data => refreshOnSuccess(data))
-    .catch(msg => refreshOnError(msg))
-    .finally(() => {
-      loaderRef.style.display = 'none';
-      moreBtn.style.visible = 'block';
-      updateMoreBtn();
-    });
+  try {
+    const data = await getImages(searchStr, currentPage);
+    refreshOnSuccess(data);
+  } catch (error) {
+    refreshOnError(error);
+  } finally {
+    loaderRef.style.display = 'none';    
+  }
 }
 
 function updateMoreBtn() {
