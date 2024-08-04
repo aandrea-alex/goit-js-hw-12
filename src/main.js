@@ -115,7 +115,7 @@ function onMoreBtnClick() {
 
 function updateMoreBtn() {
   moreBtn.style.display = images.length > 0 ? 'block' : 'none';
-  if (currentPage >= maxPages) {
+  if (currentPage > maxPages) {
     moreBtn.style.display = 'none';
     if (maxPages > 1) {
       createErrMsg(
